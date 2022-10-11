@@ -1,0 +1,53 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    background-image: url("https://images7.alphacoders.com/329/329985.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#header{
+    height: 30px;
+}
+#main {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+}
+.boss {
+    cursor: pointer;
+    background-color: rgb(191, 191, 191);
+    border-style: ridge;
+    border-color: rgb(161, 161, 161);
+    border-width: 3px;
+    color: white;
+    font-family: "copperplate";
+    font-size:large;
+    text-shadow: 1px 1px 1px rgb(189, 196, 203), 2px 2px 2px black;
+    text-align: center;
+    height: calc(31vh - 10px);
+
+}
+#back{
+    cursor: pointer;
+    background-color: rgba(52, 53, 69, 0.5);
+    border-style: ridge;
+    color:whitesmoke;
+    border-color: rgb(161, 161, 161);
+    border-width: 3px;
+    text-shadow: .5px .5px .5px rgb(136, 136, 137), .5px .5px .5px rgba(147, 147, 147, 0.63);
+    text-align: center;
+    border-radius: 5px;
+}
+.q4 {
+    cursor: pointer;
+    background-color: rgba(52, 53, 69, 0.5);
+    border-style: ridge;
+    border-color: rgb(161, 161, 161);
+    border-width: 3px;
+    /* color: white; */
+    text-shadow: .5px .5px .5px rgb(136, 136, 137), .5px .5px .5px rgba(147, 147, 147, 0.63);
+    text-align: center;
+    border-radius: 5px;
+}
