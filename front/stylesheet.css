@@ -1,14 +1,16 @@
 html, body {
     height: 100%;
     width: 100%;
-    /* overflow: hidden; */
+    overflow-x:hidden;
+    background-attachment: fixed;
 }
 body {
     background-image: url("https://images7.alphacoders.com/329/329985.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    position: relative;
+    /* position: fixed; */
+    background-position: center;
 }
 #header{
     height: 30px;
@@ -17,6 +19,13 @@ body {
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-gap: 10px;
+}
+@media only screen and (max-width: 800px) {
+    #main {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 10px;
+    }
 }
 .boss {
     cursor: pointer;
