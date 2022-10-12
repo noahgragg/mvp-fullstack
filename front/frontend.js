@@ -1,7 +1,7 @@
 const mainDiv = document.getElementById('main');
 var backButton = document.getElementById('back')
 var wishButton = document.getElementById('wishlist')
-var ApiUrl = "https://icecrown-citadel.onrender.com:"
+var ApiUrl = "https://icecrown-citadel.onrender.com"
 console.log("API:", ApiUrl)
 //load main boss page when on loot page
 backButton.addEventListener('click', () =>{
