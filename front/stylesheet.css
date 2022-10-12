@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 body {
     background-image: url("https://images7.alphacoders.com/329/329985.jpg");
