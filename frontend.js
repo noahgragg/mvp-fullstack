@@ -1,8 +1,12 @@
 const mainDiv = document.getElementById('main');
-const backButton = document.getElementById('back')
+var backButton = document.getElementById('back')
+var wishButton = document.getElementById('wishlist')
 //load main boss page when on loot page
 backButton.addEventListener('click', () =>{
     getBossList();
+})
+wishButton.addEventListener('click', () => {
+    loadWishList();
 })
 //load all bosses to page
 function loadBossList(bossObject){
@@ -36,7 +40,7 @@ async function getBossList(){
 }
 //fetch loot for boss clicked on
 async function getLootList(bossId){
-    fetch(`http://127.0.0.1:8000/api/${bossId}`, {method: 'GET', mode: 'cors'})
+    fetch(`http://127.0.0.1:8000/api/boss/${bossId}`, {method: 'GET', mode: 'cors'})
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
@@ -49,23 +53,68 @@ async function getLootList(bossId){
 //load loot to page
 function loadLootList(item){
     let lootName = item.name;
-    let lootId = item['wowhead_id']
+    let whId = item['wowhead_id']
+    let lootId = item['loot_id']
+    let wish = item['wishlist']
     let lootDiv = document.createElement('a')
     lootDiv.setAttribute('href','#');
     lootDiv.style.textDecorationLine = "none"
-    lootDiv.setAttribute('data-wowhead', `item=${lootId}&domain=wotlk`)
+    lootDiv.setAttribute('data-wowhead', `item=${whId}&domain=wotlk`)
     lootDiv.setAttribute('class', 'q4');
     lootDiv.innerText = `[${lootName}]`;
     mainDiv.appendChild(lootDiv);
+    //create wishlist checkbox
+    var wishList = document.createElement("INPUT");
+    wishList.setAttribute("type", "checkbox");
+    wishList.setAttribute("id", item['loot_id'])
+    wishList.setAttribute("class", "wishbox")
+    lootDiv.appendChild(wishList)
+    console.log(wish)
+        if(wish !== null){
+            wishList.checked = true;
+        }
+        wishList.addEventListener('change', function() {
+            if (wishList.checked) {
+                console.log("Checkbox is checked..");
+                addToWishList(lootId)
+            } else {
+                console.log("Checkbox is not checked..");
+                removeFromWishList(lootId);
+            }
+        });
 }
-async function addToWishList(){
-
+async function addToWishList(wishId){
+    fetch(`http://127.0.0.1:8000/api/wish/${wishId}`, {method: 'PATCH', mode: 'cors'})
+    .then(resp => {
+        console.log(resp + ' added to wishlist.')
+    }
+    // => resp.json())
+    // .then(data => {
+    //     console.log(data);
+    //     deleteChild();
+    //     data.forEach(element => {
+    //         loadLootList(element)
+    //     })
+    )
 }
-async function removeFromWishList(){
-
+async function removeFromWishList(wishId){
+    fetch(`http://127.0.0.1:8000/api/removewish/${wishId}`, {method: 'PATCH', mode: 'cors'})
+    .then(resp => resp.json())
+    .then(data => {
+        console.log(data + ' removed from wishlist.')
+    }
+    )
 }
 function loadWishList(){
-
+    fetch(`http://127.0.0.1:8000/api/wish`, {method: 'GET', mode: 'cors'})
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            deleteChild();
+            data.forEach(element => {
+                loadLootList(element);
+            })
+        })
 }
 //clear divs from main
 function deleteChild() {

@@ -26,6 +26,7 @@ body {
     font-size:large;
     text-shadow: 1px 1px 1px rgb(189, 196, 203), 2px 2px 2px black;
     text-align: center;
+    border-radius: 5px;
     height: calc(31vh - 10px);
 
 }
@@ -40,6 +41,18 @@ body {
     text-align: center;
     border-radius: 5px;
 }
+#wishlist{
+    cursor: pointer;
+    background-color: rgba(52, 53, 69, 0.5);
+    border-style: ridge;
+    color:whitesmoke;
+    border-color: rgb(161, 161, 161);
+    border-width: 3px;
+    text-shadow: .5px .5px .5px rgb(136, 136, 137), .5px .5px .5px rgba(147, 147, 147, 0.63);
+    text-align: center;
+    border-radius: 5px;
+    float: right;
+}
 .q4 {
     cursor: pointer;
     background-color: rgba(52, 53, 69, 0.5);
@@ -50,4 +63,7 @@ body {
     text-shadow: .5px .5px .5px rgb(136, 136, 137), .5px .5px .5px rgba(147, 147, 147, 0.63);
     text-align: center;
     border-radius: 5px;
+}
+.wishbox{
+    float:right;
 }

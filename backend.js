@@ -21,7 +21,7 @@ app.get('/api/boss', (req,res) =>{
     })    
 })
 //Get all loot based on boss id
-app.get('/api/:boss', (req,res) =>{
+app.get('/api/boss/:boss', (req,res) =>{
     let boss = req.params['boss']
     console.log(boss)
     pool.query(`SELECT * FROM loot WHERE boss_id=${boss};`)
@@ -30,7 +30,29 @@ app.get('/api/:boss', (req,res) =>{
     })    
 })
 
-
+app.get('/api/wish', (req,res) =>{
+    pool.query(`SELECT * FROM loot where wishlist = 1;`)
+    .then(result =>{
+        res.send(result.rows);
+    })    
+})
+//ADD TO WISHLIST
+app.patch('/api/wish/:id', (req, res) => {
+    let wishLoot = req.params['id']
+    console.log('wishlist test')
+    pool.query(`UPDATE loot SET wishlist = 1 WHERE loot_id = ${wishLoot}`)
+    .then(result =>{
+        res.send(result.rows)
+    })
+})
+//REMOVE FROM WISHLIST
+app.patch('/api/removewish/:id', (req, res) => {
+    let wishLoot = req.params['id']
+    pool.query(`UPDATE loot SET wishlist = NULL WHERE loot_id = ${wishLoot}`)
+    .then(result =>{
+        res.send(result.rows)
+    })
+})
 // app.post('/api/weapons', (req, res) =>{
 //     let newWep = req.body;
 //     console.log(newWep)
