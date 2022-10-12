@@ -1,11 +1,12 @@
-html, body {
-    height: 100%;
-    overflow: hidden;
-}
+/* html, body {
+    height: 100%; */
+    /* overflow: hidden;
+} */
 body {
     background-image: url("https://images7.alphacoders.com/329/329985.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 #header{
     height: 30px;
