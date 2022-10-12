@@ -2,12 +2,14 @@ const express = require('express');
 const res = require('express/lib/response');
 const app = express();
 const cors = require('cors')
-const PORT = 8000;
+//const PORT = 8000;
 const {Pool} = require('pg');
-const connectionString = 'postgres://postgres:postgrespw@localhost:55002/icecrown'
+const config = require('./config')[process.env.NODE_ENV]
+const PORT = config.port
+//const connectionString = 'postgres://postgres:postgrespw@localhost:55002/icecrown'
 
 const pool = new Pool({
-    connectionString: connectionString,
+    connectionString: config.connectionString,
 });
 app.use(cors())
 app.use(express.json());
@@ -53,14 +55,7 @@ app.patch('/api/removewish/:id', (req, res) => {
         res.send(result.rows)
     })
 })
-// app.post('/api/weapons', (req, res) =>{
-//     let newWep = req.body;
-//     console.log(newWep)
-//     pool.query(`INSERT INTO weapons (wepType, wepDmg, wepSpd, name) VALUES ('${newWep.type}', ${newWep.damage}, '${newWep.speed}','${newWep.name}');`)
-//     //res.send('Nice');
-// })
 
-// app.delete()
 
 app.listen(PORT, function() {
 console.log(`Server is running ${PORT}`)
