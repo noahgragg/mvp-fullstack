@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors')
 //const PORT = 8000;
 const {Pool} = require('pg');
-const config = require('./config')[process.env.NODE_ENV]
+const config = require('./config')[process.env.NODE_ENV||"dev"]
 const PORT = config.port
 //const connectionString = 'postgres://postgres:postgrespw@localhost:55002/icecrown'
 
