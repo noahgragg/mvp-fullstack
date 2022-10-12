@@ -1,6 +1,8 @@
 const mainDiv = document.getElementById('main');
 var backButton = document.getElementById('back')
 var wishButton = document.getElementById('wishlist')
+let ApiUrl = ENV == 'dev' ? "http://127.0.0.1:8000" : "https://icecrown-citadel.onrender.com:"
+console.log("API:", ApiUrl)
 //load main boss page when on loot page
 backButton.addEventListener('click', () =>{
     getBossList();
@@ -27,7 +29,7 @@ function loadBossList(bossObject){
 }
 //get all bossed
 async function getBossList(){
-    fetch(`http://127.0.0.1:8000/api/boss`, {method: "GET", mode: 'cors'})
+    fetch(`${ApiUrl}/api/boss`, {method: "GET", mode: 'cors'})
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
@@ -40,7 +42,7 @@ async function getBossList(){
 }
 //fetch loot for boss clicked on
 async function getLootList(bossId){
-    fetch(`http://127.0.0.1:8000/api/boss/${bossId}`, {method: 'GET', mode: 'cors'})
+    fetch(`${ApiUrl}/api/boss/${bossId}`, {method: 'GET', mode: 'cors'})
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
@@ -84,7 +86,7 @@ function loadLootList(item){
         });
 }
 async function addToWishList(wishId){
-    fetch(`http://127.0.0.1:8000/api/wish/${wishId}`, {method: 'PATCH', mode: 'cors'})
+    fetch(`${ApiUrl}/api/wish/${wishId}`, {method: 'PATCH', mode: 'cors'})
     .then(resp => {
         console.log(resp + ' added to wishlist.')
     }
@@ -98,7 +100,7 @@ async function addToWishList(wishId){
     )
 }
 async function removeFromWishList(wishId){
-    fetch(`http://127.0.0.1:8000/api/removewish/${wishId}`, {method: 'PATCH', mode: 'cors'})
+    fetch(`${ApiUrl}/api/removewish/${wishId}`, {method: 'PATCH', mode: 'cors'})
     .then(resp => resp.json())
     .then(data => {
         console.log(data + ' removed from wishlist.')
@@ -106,7 +108,7 @@ async function removeFromWishList(wishId){
     )
 }
 function loadWishList(){
-    fetch(`http://127.0.0.1:8000/api/wish`, {method: 'GET', mode: 'cors'})
+    fetch(`${ApiUrl}/api/wish`, {method: 'GET', mode: 'cors'})
         .then(resp => resp.json())
         .then(data => {
             console.log(data)
