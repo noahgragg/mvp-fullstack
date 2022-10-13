@@ -7,6 +7,7 @@ console.log("API:", ApiUrl)
 backButton.addEventListener('click', () =>{
     getBossList();
 })
+//load all wishlist items
 wishButton.addEventListener('click', () => {
     loadWishList();
 })
@@ -27,7 +28,7 @@ function loadBossList(bossObject){
         getLootList(bossObject['boss_id']);
     })
 }
-//get all bossed
+//get all bosses and photos
 async function getBossList(){
     fetch(`${ApiUrl}/api/boss`, {method: "GET", mode: 'cors'})
         .then(resp => resp.json())
@@ -52,7 +53,7 @@ async function getLootList(bossId){
             })
         })
 }
-//load loot to page
+//load loot to page for each object
 function loadLootList(item){
     let lootName = item.name;
     let whId = item['wowhead_id']
@@ -85,20 +86,15 @@ function loadLootList(item){
             }
         });
 }
+//set wishlist value to 1
 async function addToWishList(wishId){
     fetch(`${ApiUrl}/api/wish/${wishId}`, {method: 'PATCH', mode: 'cors'})
     .then(resp => {
         console.log(resp + ' added to wishlist.')
     }
-    // => resp.json())
-    // .then(data => {
-    //     console.log(data);
-    //     deleteChild();
-    //     data.forEach(element => {
-    //         loadLootList(element)
-    //     })
     )
 }
+//set wishlist value to NULL
 async function removeFromWishList(wishId){
     fetch(`${ApiUrl}/api/removewish/${wishId}`, {method: 'PATCH', mode: 'cors'})
     .then(resp => resp.json())
@@ -107,6 +103,7 @@ async function removeFromWishList(wishId){
     }
     )
 }
+//fetch all from loot where wishlist = 1
 function loadWishList(){
     fetch(`${ApiUrl}/api/wish`, {method: 'GET', mode: 'cors'})
         .then(resp => resp.json())
@@ -114,7 +111,7 @@ function loadWishList(){
             console.log(data)
             deleteChild();
             data.forEach(element => {
-                loadLootList(element);
+                loadLootList(element); //load wishlist items to page
             })
         })
 }

@@ -9,21 +9,20 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    /* position: fixed; */
     background-position: center;
 }
 #header{
     height: 30px;
     width: 99%;
 }
-#main {
+#main { /* 4 columns for desktop */
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto; 
     grid-gap: 10px 10px;
     width: 99%;
     overflow-y: hidden;
 }
-@media only screen and (max-width: 800px) {
+ @media only screen and (max-width: 800px) { /*smaller screen size only has to columns */
     #main {
         display: grid;
         grid-template-columns: auto auto;
@@ -69,17 +68,16 @@ body {
     border-radius: 5px;
     float: right;
 }
-.q4 {
+.q4 { /* loot divs */
     cursor: pointer;
     background-color: rgba(52, 53, 69, 0.5);
     border-style: ridge;
     border-color: rgb(161, 161, 161);
     border-width: 3px;
-    /* color: white; */
     text-shadow: .5px .5px .5px rgb(136, 136, 137), .5px .5px .5px rgba(147, 147, 147, 0.63);
     text-align: center;
     border-radius: 5px;
 }
-.wishbox{
+.wishbox{ /* checkbox on loot divs */
     float:right;
 }
